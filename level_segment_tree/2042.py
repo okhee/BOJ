@@ -5,7 +5,6 @@ class segTree:
         variables:
             N:    number of items, length of arr
             arr:  array of items
-            H:    depth of tree
             tree: balanced binary tree where leaves are each item, respectively
                   value of internal node is sum of value of its child nodes
 
@@ -25,15 +24,11 @@ class segTree:
     def __init__(self, N, arr):
         self.N = N
         self.arr = arr
-
-        self.H = 1
-        while self.N > 2**self.H:
-            self.H += 1
         
-        self.tree = [0 for _ in range(2**(self.H + 1))]
+        self.tree = [0 for _ in range(4*self.N)]
         self.initTree(nodeId=1, start=0, end=N-1)
 
-    # start, end are index from arr, not tree
+    # start, end are index of arr, not tree
     def initTree(self, nodeId, start, end):
         if start == end:
             self.tree[nodeId] = self.arr[start]
@@ -51,16 +46,16 @@ class segTree:
         # targetIdx not included in [start, end]
         if targetIdx < start or end < targetIdx:
             return
+
+        self.tree[nodeId] += valDiff
         # current leaf is target, targetIdx == start == end
-        elif start == end:
+        if start == end:
             self.arr[targetIdx] += valDiff
-            self.tree[nodeId] += valDiff
         # [start, end] includes targetIdx
         else:
             mid = (start + end) // 2
             self.__updateTree(nodeId * 2,     start,   mid, targetIdx, valDiff)
             self.__updateTree(nodeId * 2 + 1, mid + 1, end, targetIdx, valDiff)
-            self.tree[nodeId] += valDiff
 
     def rangeSum(self, rangeStart, rangeEnd):
         """Wrapper function of __rangeSum"""
@@ -79,6 +74,8 @@ class segTree:
         else:
             return self.__rangeSum(nodeId * 2,     start,   mid, rangeStart, mid) + \
                    self.__rangeSum(nodeId * 2 + 1, mid + 1, end, mid + 1,    rangeEnd)
+import sys
+input = sys.stdin.readline
 
 [N, M, K] = list(map(int, input().split()))
 arr = [int(input()) for _ in range(N)]
