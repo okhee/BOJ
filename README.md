@@ -31,6 +31,37 @@
 - ```bisect.bisect(a, x) = ``` <span style="color:green">6</span>
 ### ```import heapq``` - [*link*](https://docs.python.org/ko/3/library/heapq.html)
 ---
+## Data Structures
+### Trie - [*link*](https://ko.wikipedia.org/wiki/트라이_(컴퓨팅))
+```python
+class Node:
+    def __init__(self, char):
+        self.char = char
+        self.child = {}
+    
+class Trie:
+    def __init__(self):
+        self.head = Node(None)
+    
+    def insert(self, word):
+        cur = self.head
+        for char in word:
+            if char not in cur.child:
+                cur.child[char] = Node(char)
+            cur = cur.child[char]
+        cur.child['*'] = None
+    
+    def search(self, word):
+        cur = self.head
+
+        for char in word:
+            if char not in cur.child:
+                return False
+            cur = cur.child[char]
+        if '*' in cur.child:
+            return True
+```
+---
 ## Algorithms
 ### Graph, Tree Search Algorithm
 - ### Floyd-Warshall Algorithm - O(|V|^3)
