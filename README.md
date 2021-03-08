@@ -30,6 +30,8 @@
 - ```bisect.bisect_left(a, x) = ```<span style="color:red">3</span>
 - ```bisect.bisect(a, x) = ``` <span style="color:green">6</span>
 ### ```import heapq``` - [*link*](https://docs.python.org/ko/3/library/heapq.html)
+- `heapq.heappop(heap)`
+- `heapq.heappush(heap)`
 ---
 ## Data Structures
 ### Trie - [*link*](https://ko.wikipedia.org/wiki/트라이_(컴퓨팅))
@@ -64,6 +66,36 @@ class Trie:
 ---
 ## Algorithms
 ### Graph, Tree Search Algorithm
+- ### Dijkstra's Algorithm
+```python
+def dijkstra(V, initNode, adj)
+  dist = [math.inf for _ in range(V+1)]
+  dist[initNode] = 0
+  prev = [None for _ in range(V+1)]
+  heap = [(0, initNode)]
+
+  # This heap contains duplicate only when
+  # new route is efficient at one point but
+  # turns out to be inefficient later.
+  # This duplicate will be easily removed by 'continue'
+  while heap:
+    curDist, curNode = heapq.heappop(heap)
+
+    # heap might contain meaningless case
+    # where curNode is already handled elsewhere
+    if dist[curNode] < curDist:
+      continue
+
+    # for all of its adjacent nodes,
+    for nextDist, nextNode in adj[curNode]:
+      nextDist = curDist + nextDist
+      # if this new route is efficient, update
+      if nextDist < dist[nextNode]:
+        dist[nextNode] = nextDist
+        heapq.heappush(heap, (nextDist, nextNode))
+  return dist
+```
+
 - ### Floyd-Warshall Algorithm - O(|V|^3)
 ```python
 import math
