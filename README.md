@@ -116,6 +116,29 @@ for k from 1 to |V|
                 dist[i][j] ← dist[i][k] + dist[k][j]
             end if
 ```
+- ### Topological sort
+```python
+inward = [0 for _ in range(V+1)]
+outward = [set() for _ in range(V+1)]
+
+for each edge (u, v) do
+    inward[v] += 1
+    outward[u].add(v)
+
+queue = []
+for i in range(1, V+1):
+    if inward[i] == 0:
+        queue.append(i)
+
+answer = []
+while queue:
+    curNode = queue.popleft()
+    answer.append(curNode)
+    for nextNode in outward[curNode]:
+        inward[nextNode] -= 1
+        if inward[nextNode] == 0:
+            queue.append(nextNode)
+```
 
 ---
 ## Tips
