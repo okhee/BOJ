@@ -165,6 +165,36 @@ while not all(visit):
             continue
         heapq.heappush(heap, (cost, nextNode))
 ```
+- ### Kruskal's Algorithm
+```python
+# global list
+# Some kind of linked list that leads to ancestor
+parents = [i for _ in range(V)]
+def ancestor(node):
+    global parents
+    # if node has other parent
+    if parents[node] != node:
+        return ancestor(parents[node])
+    else:
+        return node
+
+# adj, edges given
+edges.sort(key=lambda k: (cost of k))
+
+totalCost = 0
+edgeCount = 0
+for start, end, cost in edges:
+    # Same ancestor, this will make 'cycle'!
+    if ancestor(start) == ancestor(end):
+        continue
+    
+    totalCost += cost
+    # start's new ancestor will be merged into end
+    parents[ancestor(start)] = end
+
+    if edgeCount == n-1:
+        break
+```
 
 ---
 ## Tips
