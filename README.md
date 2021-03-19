@@ -139,6 +139,32 @@ while queue:
         if inward[nextNode] == 0:
             queue.append(nextNode)
 ```
+- ### Prim's Algorithm
+```python
+# N nodes, 'edges' list given
+for start, end, cost in edges:
+    adj[start].add((end, cost))
+    adj[end].add((start,cost))
+
+visit = [False for _ in range(N)]
+heap = [(0, 0)] # (edge cost to endNode, endNode)
+totalCost = 0
+# Must visit every node to terminate
+while not all(visit):
+    cost, curNode = heapq.heappop(heap)
+    # Already visited, included
+    if visit[curNode]:
+        continue
+    visit[curNode] = True
+    totalCost += cost
+
+    for nextNode, cost in adj[curNode]:
+        # We want to choose edge (u, v)
+        # Where u is visited and v is not visited
+        if visit[nextNode]:
+            continue
+        heapq.heappush(heap, (cost, nextNode))
+```
 
 ---
 ## Tips
