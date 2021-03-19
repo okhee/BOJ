@@ -187,10 +187,11 @@ for start, end, cost in edges:
     # Same ancestor, this will make 'cycle'!
     if ancestor(start) == ancestor(end):
         continue
-    
-    totalCost += cost
+
     # start's new ancestor will be merged into end
     parents[ancestor(start)] = end
+    totalCost += cost
+    edgeCount += 1
 
     if edgeCount == n-1:
         break
