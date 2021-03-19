@@ -174,16 +174,21 @@ def ancestor(node):
     global parents
     # if node has other parent
     if parents[node] != node:
-        return ancestor(parents[node])
+        # Update with recent information
+        parents[node] = ancestor(parents[node])
+        return parents[node]
     else:
         return node
 
 # adj, edges given
-edges.sort(key=lambda k: (cost of k))
+# edges.sort(key=lambda k: (cost of k))
+edges = []
+heapq.heappush(edges, (cost, start, end))
 
 totalCost = 0
 edgeCount = 0
-for start, end, cost in edges:
+while edges:
+    cost, start, end = heapq.heappop(edge)
     # Same ancestor, this will make 'cycle'!
     if ancestor(start) == ancestor(end):
         continue
