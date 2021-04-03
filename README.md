@@ -66,6 +66,44 @@ class Trie:
 ---
 ## Algorithms
 ### Graph, Tree Search Algorithm
+- ### Breadth First Search (BFS)
+```python
+import collections
+
+adj = [set() for _ in range(node_num)]
+for s, e in edges:
+    adj[s].add(e)
+    # if graph is undirected graph,
+    # adj[e].add(s)
+
+# You can use value of visit array as 0, 1, 2,
+# which represents (weighted) length between certain node and start node
+visit = [False for _ in range(node_num)]
+auxilary_arr = [0 for _ in range(node_num)]
+
+bfs_queue = collections.deque()
+bfs_queue.append(start_node)
+visit[start_node] = True
+auxilary_arr[start_node] = init
+
+# while not all(visit):
+while bfs_queue:
+    cur_node = bfs_queue.popleft()
+
+    for next_node in adj[cur_node]:
+    # any invalid state, already visited case will be skipped here
+        # if it is about 2d grid,
+        # if i or j in out of bound,
+        #   continue
+        if visit[next_node]:
+            continue
+
+        bfs_queue.append(next_node)
+        visit[next_node] = True
+        auxilary_arr[next_node] = some_val[cur_node] + foo
+return auxilary_arr[end_node]
+```
+
 - ### Dijkstra's Algorithm
 ```python
 def dijkstra(V, initNode, adj)
