@@ -24,6 +24,11 @@
 - [itertools.product](https://docs.python.org/ko/3/library/itertools.html#itertools.product)
   - Cartesian product of **multiple** iterables
 - [itertools.combinations](https://docs.python.org/ko/3/library/itertools.html#itertools.combinations)
+```python
+for c in itertools.combinations(range(5), 3):
+    # type(c) - <class 'tuple'>
+    # c - (0, 1, 2), (0, 1, 3), ...
+```
 ### ```import bisect``` - [*link*](https://docs.python.org/ko/3/library/bisect.html)
 - With given **sorted** list ```a``` and ```x = 4 ```   
 [1, 2, 3, <span style="color:red">4</span>, 4, 4, <span style="color:green">5</span>, 6, ...]
@@ -32,6 +37,15 @@
 ### ```import heapq``` - [*link*](https://docs.python.org/ko/3/library/heapq.html)
 - `heapq.heappop(heap)`
 - `heapq.heappush(heap)`
+### ```set``` - [*link*](https://wikidocs.net/16044)
+- No duplicated values
+- Iterable, but not ordered
+- `s.add(elem)`
+- `s.remove(elem)`
+    - if elem does not exist, raise KeyError
+    - `s.discard(elem)` won't raise error
+- `a.union(b)`, `a.intersection(b)`, `a.difference(b)`
+- `a.issubset(b)`, `a.issuperset(b)`, `a.isdisjoint(b)`
 ---
 ## Data Structures
 ### Trie - [*link*](https://ko.wikipedia.org/wiki/트라이_(컴퓨팅))
