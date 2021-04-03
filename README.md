@@ -20,6 +20,13 @@
 ### ```import collections``` - [*link*](https://docs.python.org/ko/3/library/collections.html)
 - [collections.Counter](https://docs.python.org/ko/3/library/collections.html#collections.Counter)
   - Use this instead of dict for counting number of occurrence
+- [collections.defaultdict](https://docs.python.org/ko/3/library/collections.html#collections.defaultdict)
+```python
+# d = {'a':[], 'b':[1, 2]}
+d = collections.defaultdict(list)
+# d = {'a':0, 'b':1}
+d = collections.defaultdict(int)
+```
 ### ```import itertools``` - [*link*](https://docs.python.org/ko/3/library/itertools.html)
 - [itertools.product](https://docs.python.org/ko/3/library/itertools.html#itertools.product)
   - Cartesian product of **multiple** iterables
