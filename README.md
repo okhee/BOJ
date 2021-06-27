@@ -37,10 +37,34 @@ for c in itertools.combinations(range(5), 3):
     # c - (0, 1, 2), (0, 1, 3), ...
 ```
 ### ```import bisect``` - [*link*](https://docs.python.org/ko/3/library/bisect.html)
-- With given **sorted** list ```a``` and ```x = 4 ```   
+- `bisect` basically points to leftmost index of `greater or equal` value compared to query number.
+- With given **sorted** list `a` and `x = 4 `   
 [1, 2, 3, <span style="color:red">4</span>, 4, 4, <span style="color:green">5</span>, 6, ...]
-- ```bisect.bisect_left(a, x) = ```<span style="color:red">3</span>
-- ```bisect.bisect(a, x) = ``` <span style="color:green">6</span>
+- `bisect.bisect_left(a, x)` = 3
+  - points to leftmost index of `equal (if exist) or greater` value
+- `bisect.bisect(a, x)` = 6
+  - points to leftmost index of `greater` value
+- `Binary Search` using `bisect`
+    - Finding first occurence of `num`
+    ```python
+    def BinarySearch(array, num):
+        idx = bisect.bisect_left(array, num)
+        # idx == len(array) means every element is smaller than num
+        if idx != len(array) and array[idx] == num:
+            return idx
+        # num not found
+        else:
+            return -1
+    ```
+    - Finding greatest value smaller than `num`
+    ```python
+    def BinarySearch(array, num):
+        idx = bisect.bisect_left(array, num)
+        if idx > 0:
+            return array[idx - 1]
+        else:
+            return None
+    ```
 ### ```import heapq``` - [*link*](https://docs.python.org/ko/3/library/heapq.html)
 - `heapq.heappop(heap)`
 - `heapq.heappush(heap)`
