@@ -125,6 +125,36 @@ while bfs_queue:
 return auxilary_arr[end_node]
 ```
 
+- ### Depth First Search (DFS)
+You can either replace `queue` to `stack` of BFS or use recursive algorithm.
+Recursive method can be considered as sort of `backtracking` or `dynamic programming`
+```python
+def distributeCoins(self, root: TreeNode) -> int:
+    answer = 0
+    
+    # recursive function
+    def dfs(node):
+        nonlocal answer
+        
+        # leaf node
+        if not node:
+            return 0
+        
+        # retrieve sub-information
+        l = dfs(node.left)
+        r = dfs(node.right)
+        
+        # calculate for current node
+        answer += abs(l) + abs(r)
+
+        # return sub-information            
+        return l + r + node.val - 1
+    
+    # Top-down
+    dfs(root)
+    return answer
+```
+
 - ### Dijkstra's Algorithm
 ```python
 def dijkstra(V, initNode, adj)
