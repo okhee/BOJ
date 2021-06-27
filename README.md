@@ -154,6 +154,19 @@ def distributeCoins(self, root: TreeNode) -> int:
     dfs(root)
     return answer
 ```
+If hierarchical structure of given tree is unsure, such as only adjacency relationship is given, specify `parent` in dfs function <br>
+Plus, location of subsequent `dfs()` call determines whether this is `pre-fix`, `in-fix`, `post-fix`. Keep in mind!
+``` python
+def dfs(node, parent=None):
+    for child in adj[node]:
+        # ignore adjacent parent to ensure topological order
+        if child != parent:
+            child_stat = dfs(child, node)
+            sub_stat[0] = child_stat[0] + 1
+            sub_stat[1] = child_stat[0] + child_stat[1]
+    stat[node] = sub_stat
+    return sub_stat
+```
 
 - ### Dijkstra's Algorithm
 ```python
