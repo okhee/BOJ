@@ -1,7 +1,7 @@
 # BOJ
 ### My Solution to [Baekjoon Online Judge](https://www.acmicpc.net/) Problems
 
-## Platinum Level
+<!-- ## Platinum Level
 - <img src="https://static.solved.ac/tier_small/16.svg" width="12">  [Largest Rectangle in a Histogram](https://www.acmicpc.net/problem/6549) - *[solution](https://github.com/okhee/BOJ/blob/main/Level_19_DivAndConq/9_6549.py)*
   - Divide and Conquer
   - Segment Tree
@@ -15,7 +15,7 @@
   - Binary Search Tree
 - <img src="https://static.solved.ac/tier_small/14.svg" width="12"> [확장 게임](https://www.acmicpc.net/problem/16920) - *[solution](https://github.com/okhee/BOJ/blob/main/level_23_DFS_BFS/extra_16920.py)*
   - BFS
----
+--- -->
 ## [Python Standard Library](https://docs.python.org/ko/3/library/index.html)
 ### ```import collections``` - [*link*](https://docs.python.org/ko/3/library/collections.html)
 - [collections.Counter](https://docs.python.org/ko/3/library/collections.html#collections.Counter)
