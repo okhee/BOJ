@@ -44,6 +44,26 @@ for c in itertools.combinations(range(5), 3):
   - points to leftmost index of `equal (if exist) or greater` value
 - `bisect.bisect(a, x)` = 6
   - points to leftmost index of `greater` value
+- bisect source code
+    ```python
+    def bisect_left(a, x):
+        # [lo, hi)
+        lo = 0       # lo:  inclusive
+        hi = len(a)  # hi: *exclusive*
+        
+        while lo < hi:
+            mid = (lo + hi) // 2
+
+            # <= for bisect_right
+            if a[mid] < x:
+                lo = mid + 1
+            else:
+                hi = mid
+            # add 'a[mid] == x:' for search
+
+        return lo
+    ```
+
 - `Binary Search` using `bisect`
     - Finding first occurence of `num`
     ```python
